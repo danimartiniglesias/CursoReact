@@ -28,10 +28,11 @@ class FilteredItemList extends Component{
         const items = this.props.items;
 
         const itemsFiltered = items.filter(item => {
-            if (item.title.match(filter) || item.description.match(filter)) {
-                return true;
-            }
-            return false;
+            // if (item.title.match(filter) || item.description.match(filter)) {
+            //     return true;
+            // }
+            // return false;
+            return (item.title.match(filter) || item.description.match(filter))
         });
 
         this.setState({
