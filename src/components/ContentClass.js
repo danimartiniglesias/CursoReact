@@ -2,6 +2,8 @@ import React, {Component} from "react";
 import SideBar from "../components/Sidebar";
 import MainContent from "../components/MainContent";
 import MainContentHeader from "../components/MainContentHeader";
+// import {ItemList} from "./ItemList";
+import {FilteredItemList} from "../components/FilteredItemList";
 
 class ContentClass extends Component {
     constructor(props){
@@ -15,9 +17,12 @@ class ContentClass extends Component {
     onSectionSelected(idSecion, e){
         e.preventDefault();
         const selectedSection = this.props.sections.find(e => e.id === idSecion);
-        this.setState({
-            sectionSelected:selectedSection
-        });
+        if(selectedSection){
+            this.setState({
+                sectionSelected:selectedSection
+            });
+        }
+
     }
 
     render(){
@@ -40,7 +45,9 @@ class ContentClass extends Component {
                     {/*/>*/}
                     <MainContent content={this.state.sectionSelected.content}>
                         <MainContentHeader/>
+                        <FilteredItemList items={this.state.sectionSelected.content.items} />
                     </MainContent>
+
                 </div>
             </div>
         )
