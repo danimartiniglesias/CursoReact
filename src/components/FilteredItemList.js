@@ -5,10 +5,6 @@ import ItemList from "../components/ItemList";
 class FilteredItemList extends Component{
     constructor(props){
         super(props);
-        this.state = {
-            items: props.items,
-            filter: "Default"
-        };
 
         this.changeFilter = this.changeFilter.bind(this);
     }
@@ -42,6 +38,41 @@ class FilteredItemList extends Component{
 
     }
 
+    componentWillMount(){
+        this.setState({
+            items:this.props.items,
+            filter:""
+        });
+
+        console.time("Component Mount");
+    }
+
+    componentDidMount(){
+        console.timeEnd("Component Mount");
+    }
+    componentWillUpdate(){
+        console.time("Component Update");
+    }
+    componentDidUpdate(){
+        console.timeEnd("Component Update");
+    }
+
+    componentWillReceiveProps(newprops){
+        if(newprops.items && newprops.items !== this.props.items){
+            this.setState({
+                items:newprops.items,
+                filter: ""
+            });
+        }
+    }
+
+    shouldComponentUpdate(nextProps, nextState){
+        if(nextState !== this.state){
+            return true;
+        }
+        return false;
+    }
+
     render(){
         return(
             <ItemList items={this.state.items}>
@@ -49,7 +80,7 @@ class FilteredItemList extends Component{
                     <form className="col s12">
                         <div className="input-field">
                             <i className="material-icons prefix">search</i>
-                            <input id="icon_prefix" type="text" className="validate _filter" value={this.state.filter} onChange={this.changeFilter} defaultValue="Default"/>
+                            <input placeholder="Filtra por el título o la descripción" id="icon_prefix" type="text" className="validate _filter" value={this.state.filter} onChange={this.changeFilter} defaultValue="Default"/>
                         </div>
                     </form>
                 </div>

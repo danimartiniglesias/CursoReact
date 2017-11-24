@@ -16,6 +16,7 @@ class ContentClass extends Component {
 
     onSectionSelected(idSecion, e){
         e.preventDefault();
+
         const selectedSection = this.props.sections.find(e => e.id === idSecion);
         if(selectedSection){
             this.setState({

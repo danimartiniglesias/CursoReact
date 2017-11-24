@@ -4,7 +4,7 @@ const SideBar = (props) =>{
 
     function getSections(sections) {
       return sections.map(section => {
-          return (<li key={section.id} onClick={(e) => props.selectSetion(section.id, e)} className="collection-item valign-wrapper"><i class="material-icons">radio_button_unchecked</i> {section.name}</li>);
+          return (<li key={section.id} onClick={(e) => props.selectSetion(section.id, e)} className="collection-item valign-wrapper"><i className="material-icons">radio_button_unchecked</i> {section.name}</li>);
       });
     }
 
